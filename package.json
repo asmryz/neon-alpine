@@ -1,13 +1,10 @@
 {
-  "name": "vite-alpine",
+  "name": "neon-alpine",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "start":"node index.js"
-  },
-  "devDependencies": {
-    "vite": "^5.1.4"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
