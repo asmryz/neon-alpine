@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "start":"node index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
@@ -12,5 +12,8 @@
     "axios": "^1.9.0",
     "cors": "^2.8.5",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
