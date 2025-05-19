@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vite + Alpine</title>
+	<style>
+		a {
+			text-decoration: none;
+			color: black;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	</style>
+  <script type="module" crossorigin src="./assets/index-BNPbQuqD.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DM4Mefde.css">
+</head>
+
+<body x-data="app">
+	
+	<div style="margin: 40px 0px 0px 40px;">
+		<h4>Years</h4>
+		<ul style="display: flex; list-style: none;">
+			<template x-for="Yr in years">
+				<li @click="getSemester(`${Yr.year}`)" x-text="Yr.year"
+					:style="{ backgroundColor: Yr.year === params['Year'] ? '#88fc9f' : 'white', padding: '0px 10px 0px 10px' }">
+				</li>
+			</template>
+		</ul>
+	</div>
+	<div style="margin: 40px 0px 0px 40px;" x-show="params.Year !== ''">
+		<h4>Semester</h4>
+		<ul style="display: flex; list-style: none;">
+			<template x-for="Sem in semesters">
+				<li @click="getBatch(`${Sem.semester}`)" x-text="Sem.semester"
+					:style="{ backgroundColor: Sem.semester === params['Sem'] ? '#88fc9f' : 'white', padding: '0px 10px 0px 10px'}">
+				</li>
+			</template>
+		</ul>
+	</div>
+	<div style="margin: 40px 0px 0px 40px;" x-show="params.Sem !== ''">
+		<h4>Batches</h4>
+		<ul style="display: flex; list-style: none; flex-wrap: wrap;">
+			<template x-for="Bat in batches">
+				<li @click="getClass(`${Bat.class}`)" x-text="Bat.class"
+					:style="{ backgroundColor: Bat.class === params['Batch'] ? '#88fc9f' : 'white', padding: '0px 10px 0px 10px' }">
+				</li>
+			</template>
+		</ul>
+	</div>
+	<div style="margin: 40px 0px 0px 40px;" x-show="params.Batch !== ''">
+		<h4 class="font-bold text-lg">Recaps</h4>
+		<!-- <pre x-text="JSON.stringify(batches)"></pre> -->
+			<ul style="display: flex; list-style: none; flex-wrap: wrap;">
+				<template x-for="Rc in recaps">
+					<li href="#" x-text="Rc.title"
+						:style="{ backgroundColor: Rc.rid === Number(params['Recap']) ? '#88fc9f' : 'white', padding: '0px 10px 0px 10px' }"
+						@click="getRecap(`${Rc.rid}`)"></li>
+				</template>
+			</ul>
+	</div>
+
+	<div style="margin: 40px 0px 0px 40px;" x-show="params.Recap !== ''">
+		<h4 class="font-bold text-lg">Grade Average</h4>
+		<!-- <pre x-text="JSON.stringify(students)"></pre> -->
+		<!-- <img src="images/loading.gif" alt="" class="h-6"> -->
+		<div x-show="students.length === 0">
+			<img src="./assets/loading-CJbC4H9f.gif" alt="" height="15px">
+		</div>
+		<div style="display: flex;" x-show="students.length !== 0">
+			<table>
+				<tr>
+					<th>S #</th>
+					<th>Grade</th>
+					<th>Total</th>
+					<th>Percentage %</th>
+				</tr>
+				<template x-for="(Std, index) in students">
+					<tr>
+						<td x-text="index+1"></td>
+						<td x-text="Std.grade"></td>
+						<td x-text="Std.total"></td>
+						<td x-text="Std.per"></td>
+					</tr>
+				</template>
+			</table>
+		</div>
+	</div>
+
+    
+</body>
+
+</html>
